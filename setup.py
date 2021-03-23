@@ -94,6 +94,7 @@ extras = {
     "onnx": load_requirements("requirements/requirements-onnx.txt"),
     "onnx-gpu": load_requirements("requirements/requirements-onnx-gpu.txt"),
     "mlflow": load_requirements("requirements/requirements-mlflow.txt"),
+    "comet": load_requirements("requirements/requirements-comet.txt"),
 }
 extras["all"] = extras["cv"] + extras["ml"] + extras["hydra"] + extras["optuna"]
 
