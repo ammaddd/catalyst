@@ -73,7 +73,7 @@ class CometLogger(ILogger):
         loader_sample_step: int = 0,
     ) -> None:
         """Logs image to the logger."""
-        self._experiment.log_image(image,"images")
+        self._experiment.log_image(image, "images")
 
     def log_hparams(
         self,
