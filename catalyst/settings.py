@@ -122,6 +122,15 @@ def _is_mlflow_available():
         return False
 
 
+def _is_comet_available():
+    try:
+        import comet_ml  # noqa: F401
+
+        return True
+    except ImportError:
+        return False
+
+
 def _get_optional_value(
     is_required: Optional[bool], is_available_fn: Callable, assert_msg: str
 ) -> bool:
@@ -158,6 +167,7 @@ class Settings(FrozenClass):
         # alchemy_required: Optional[bool] = None,
         # neptune_required: Optional[bool] = None,
         mlflow_required: Optional[bool] = None,
+        comet_required: Optional[bool] = None,
         # wandb_required: Optional[bool] = None,
         # [extras]
         use_lz4: Optional[bool] = None,
@@ -238,6 +248,12 @@ class Settings(FrozenClass):
             _is_mlflow_available,
             "catalyst[mlflow] is not available, to install it, "
             "run `pip install catalyst[mlflow]`.",
+        )
+        self.comet_required: bool = _get_optional_value(
+            comet_required,
+            _is_comet_available,
+            "catalyst[comet] is not available, to install it, "
+            "run `pip install catalyst[comet]`.",
         )
         # self.wandb_required: bool = wandb_required
 
